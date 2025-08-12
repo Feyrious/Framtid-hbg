@@ -189,6 +189,11 @@ p {
   color: var(--framtid-off-white);
   padding: 3rem 0;
   margin-top: 4rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .footer a {
