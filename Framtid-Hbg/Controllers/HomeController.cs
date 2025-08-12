@@ -18,7 +18,31 @@ public class HomeController : Controller
         return View();
     }
 
+    [Route("Service")]
+    public IActionResult Service()
+    {
+        return View();
+    }
+    
+    [Route("Location")]
+    public IActionResult Location()
+    {
+        return View();
+    }
+
+    [Route("Contact")]
+    public IActionResult Contact()
+    {
+        return View();
+    }
+    
+    [Route("Privacy")]
     public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    public IActionResult PageBanner()
     {
         return View();
     }
