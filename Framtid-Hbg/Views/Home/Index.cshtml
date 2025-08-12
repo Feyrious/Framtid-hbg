@@ -1,8 +1,20 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Vår Verksamhet";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@await Html.PartialAsync("PageBanner")
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <h2>Vår verksamhet</h2>
+        Sedan vår start 1994 och etableringen av Kooperativ Framtid år 2000, har vi engagerat oss i att ge individer de verktyg de behöver för att själva navigera vägen till arbetslivet.<br/>
+        <br/>
+        Vårt engagemang ligger i att erbjuda arbetspraktik genom vår second hand-butik, där deltagare får chansen att utveckla sina färdigheter och bygga självkänsla i en verklig miljö.<br/>
+        <br/>
+        Vårt mål är att stärka varje deltagares förmåga att självständigt finna sin plats i arbetslivet, med en tro på att framgång bäst uppnås genom gemenskap och samarbete.<br/>
+        <br/>
+        Kooperativ Framtid är mer än en arbetsplats - det är en plats för utveckling och självförverkligande.<br/>
+    </div>
+    <div class="col-md-6 col-lg-4 col-sm-12 offset-md-0 offset-lg-2">
+        <img class="content-images" src="img/interior-antique.webp" alt="Image of the interior"/>
+    </div>
 </div>
