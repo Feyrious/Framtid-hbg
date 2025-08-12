@@ -109,6 +109,13 @@ p {
   background-color: var(--bs-body-bg);
 }
 
+.navbar-nav {
+  /* Flyttar menyalternativen till höger genom att lägga till auto-marginal till vänster */
+  float: right;
+  margin-left: auto;
+  flex-grow: 0 !important;
+}
+
 .navbar-brand {
   font-family: var(--framtid-font-sans-serif), ui-serif;
   font-size: 1.75rem;
