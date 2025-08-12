@@ -1,0 +1,7 @@
+﻿services:
+  framtid-hbg.website:
+    image: framtid-hbg.website
+    build:
+      context: .
+      dockerfile: Dockerfile
+
