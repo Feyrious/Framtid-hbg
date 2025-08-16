@@ -23,8 +23,8 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ AZURE_FRAMTID_DEPLOY_USERNAME }}
-        password: ${{ AZURE_FRAMTID_DEPLOY_PASSWORD }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_a785ee21755c419f8c11982b671e4fc4 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_933e341b29c8440c8e87b01f3a201705 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
