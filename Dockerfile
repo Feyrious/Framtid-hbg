@@ -1,24 +1,23 @@
-# Learn about building .NET container images:
-# https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG TARGETARCH
-WORKDIR /source
-
-# Copy project file and restore as distinct layers
-COPY --link Framtid-Hbg/*.csproj .
-RUN dotnet restore -a $TARGETARCH
-
-# Copy source code and publish app
-COPY --link Framtid-Hbg/. .
-RUN dotnet publish -a $TARGETARCH --no-restore -o /app
-
-
-# Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+USER $APP_UID
+WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
-EXPOSE 8080
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["Framtid-hbg.Website.csproj", "./"]
+RUN dotnet restore "Framtid-hbg/Framtid-hbg.Website.csproj"
+COPY . .
+WORKDIR "/src/"
+RUN dotnet build "./Framtid-hbg/Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./Framtid-hbg/Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
 WORKDIR /app
-COPY --link --from=build /app .
-USER $APP_UID
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Framtid-hbg.Website.dll"]
