@@ -11,11 +11,11 @@ COPY ["Framtid-Hbg/Framtid-hbg.Website.csproj", "./"]
 RUN dotnet restore "./Framtid-Hbg/Framtid-hbg.Website.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "./Framtid-Hbg/Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Framtid-Hbg/Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
