@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_a785ee21755c419f8c11982b671e4fc4 }}/appsvc/staticsite:${{ github.sha }}
-        file: ./Dockerfile
+        file: ../Framtid-Hbg/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
