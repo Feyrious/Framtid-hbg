@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Framtid-Hbg/Framtid-hbg.Website.csproj", "./"]
-RUN dotnet restore "Framtid-Hbg/Framtid-hbg.Website.csproj"
+RUN dotnet restore "./Framtid-Hbg/Framtid-hbg.Website.csproj"
 COPY . .
 WORKDIR "/src/"
 RUN dotnet build "./Framtid-Hbg/Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/build
