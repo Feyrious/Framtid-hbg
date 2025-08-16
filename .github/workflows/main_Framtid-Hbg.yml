@@ -22,16 +22,16 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_a785ee21755c419f8c11982b671e4fc4 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_933e341b29c8440c8e87b01f3a201705 }}
+        registry: https://ghcr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_929233ea4b98485dbe15f100d14e94dc }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_4636b2aab97b477392f134ce5f26be95 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_a785ee21755c419f8c11982b671e4fc4 }}/appsvc/staticsite:${{ github.sha }}
-        file: ../Framtid-Hbg/Dockerfile
+        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_929233ea4b98485dbe15f100d14e94dc }}/appsvc/staticsite:${{ github.sha }}
+        file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'Framtid-Hbg'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_96e070f8bf0a4e129c43881310a3ba34 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_a785ee21755c419f8c11982b671e4fc4 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c291d8a3085849b4867e6d1102395e41 }}
+        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_929233ea4b98485dbe15f100d14e94dc }}/appsvc/staticsite:${{ github.sha }}'
