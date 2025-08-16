@@ -10,7 +10,6 @@ WORKDIR /src
 COPY ["Framtid-hbg.Website.csproj", "./"]
 RUN dotnet restore "Framtid-hbg.Website.csproj"
 COPY . .
-WORKDIR "/src/"
 RUN dotnet build "./Framtid-hbg.Website.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
