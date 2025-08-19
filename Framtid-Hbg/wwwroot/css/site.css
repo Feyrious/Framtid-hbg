@@ -120,6 +120,15 @@ h1, .h1, h2, .h2, h3, .h3 {
   font-weight: var(--bs-heading-font-weight); /* Ger rubrikerna lite mer tyngd */
 }
 
+a {
+  color: var(--framtid-terracotta);
+  text-decoration: none;
+  
+  a:hover {
+    color: var(--bs-link-hover-color);
+  }
+}
+
 p {
   margin-bottom: 1.25rem;
 }
