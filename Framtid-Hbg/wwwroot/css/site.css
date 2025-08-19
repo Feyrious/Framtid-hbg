@@ -247,6 +247,18 @@ img, svg {
 .info-card {
   text-align: center;
   padding: 1.5rem;
+  border: var(--bs-secondary);
+  border-width: thin;
+  border-bottom-width: thick;
+  border-style: solid;
+  border-radius: 10px;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+
+.info-card:hover {
+  top: -5px;
 }
 
 .info-card h3 {
