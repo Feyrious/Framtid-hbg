@@ -84,16 +84,19 @@ body {
 }
 
 .dev-overlay {
-  color: red;
-  font-size: xxx-large;
+  color: white;
+  background: black;
+  opacity: 40%;
+  font-size: xx-large;
+  text-align: center;
   transform: skewX(-15deg);
   position: fixed;
   top: 40%;
   left: 25%;
-  background: thistle;
-  opacity: 70%;
+  right: 25%;
   padding: 10px;
   border-radius: 10px;
+  pointer-events: none;
 }
 
 .container {
