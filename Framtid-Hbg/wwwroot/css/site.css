@@ -276,13 +276,17 @@ img, svg {
     height: 250px;
   }
   
-  h3, p, .btn {
+  h1, h2, h3, p, .btn, form {
     margin: 20px;
   }
 }
 
 .info-card:hover {
   top: -5px;
+}
+
+label {
+  font-weight: bold;
 }
 
 .info-card h3 {
