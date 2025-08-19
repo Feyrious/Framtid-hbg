@@ -75,12 +75,14 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative
 }
 
 .dev-overlay {
