@@ -48,7 +48,7 @@
 
   /* Rubriker */
   --bs-heading-font-family: var(--framtid-font-sans-serif);
-  --bs-heading-color: var(--framtid-dark-text);
+  --bs-heading-color: var(--framtid-sage);
   --bs-heading-font-weight: 600;
 }
 
@@ -75,25 +75,31 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative
 }
 
 .dev-overlay {
-  color: red;
-  font-size: xxx-large;
+  color: white;
+  background: black;
+  opacity: 40%;
+  font-size: xx-large;
+  text-align: center;
   transform: skewX(-15deg);
   position: fixed;
   top: 40%;
   left: 25%;
-  background: thistle;
-  opacity: 70%;
+  right: 25%;
   padding: 10px;
   border-radius: 10px;
+  pointer-events: none;
+  z-index: 99999;
 }
 
 .container {
@@ -114,6 +120,15 @@ h1, .h1, h2, .h2, h3, .h3 {
   color: var(--bs-heading-color);
   margin-bottom: 1.5rem;
   font-weight: var(--bs-heading-font-weight); /* Ger rubrikerna lite mer tyngd */
+}
+
+a {
+  color: var(--framtid-terracotta);
+  text-decoration: none;
+  
+  a:hover {
+    color: var(--bs-link-hover-color);
+  }
 }
 
 p {
@@ -185,6 +200,8 @@ img, svg {
 
 /* Knappar */
 .btn {
+  color: var(--framtid-off-white);
+  background-color: var(--bs-secondary);
   border-radius: 8px; /* Mjukare hörn än standard */
   padding: 0.8rem 1.8rem;
   font-family: var(--framtid-font-sans-serif), ui-serif;
@@ -244,7 +261,28 @@ img, svg {
 
 .info-card {
   text-align: center;
-  padding: 1.5rem;
+  border: var(--bs-secondary);
+  border-width: thin;
+  border-bottom-width: thick;
+  border-style: solid;
+  border-radius: 10px;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 20px, rgba(0, 0, 0, 0.22) 0px 5px 5px;
+  
+  img {
+    border-radius: 10px;
+    height: 250px;
+  }
+  
+  h3, p, .btn {
+    margin: 20px;
+  }
+}
+
+.info-card:hover {
+  top: -5px;
 }
 
 .info-card h3 {
