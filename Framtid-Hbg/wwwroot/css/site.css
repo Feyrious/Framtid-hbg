@@ -86,10 +86,12 @@ body {
 }
 
 .dev-overlay {
-  color: white;
-  background: black;
-  opacity: 40%;
+  color: var(--framtid-terracotta);
+  background: var(--framtid-sage);
+  opacity: 70%;
+  font-family: var(--framtid-font-sans-serif), sans-serif;
   font-size: xx-large;
+  font-weight: bold;
   text-align: center;
   transform: skewX(-15deg);
   position: fixed;
@@ -161,6 +163,15 @@ img, svg {
   padding-left: 40px;
   padding-right: 40px;
   margin-bottom: 0 !important;
+  
+  .nav-link {
+    color: var(--framtid-sage); !important;
+    font-family: var(--framtid-font-sans-serif),sans-serif;
+  }
+}
+
+.navbar-toggler {
+  background-color: var(--framtid-terracotta);
 }
 
 .navbar-brand {
@@ -199,7 +210,7 @@ img, svg {
 }
 
 /* Knappar */
-.btn {
+.btn, .btn:hover {
   color: var(--framtid-off-white);
   background-color: var(--bs-secondary);
   border-radius: 8px; /* Mjukare hörn än standard */
@@ -208,7 +219,7 @@ img, svg {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-out;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* En subtil skugga */
 }
 
@@ -216,9 +227,14 @@ img, svg {
   color: #FFFFFF; /* Garanterar vit text på terrakotta-knappen */
 }
 
+.form-check-input:checked {
+  background-color: var(--framtid-sage);
+  border-color: var(--framtid-sage);
+}
+
+
+
 /* Images (som på startsidan) */
-
-
 
 .shadow-text-box {
   background-color: rgba(0, 0, 0, 0.4);
