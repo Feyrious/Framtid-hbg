@@ -84,16 +84,19 @@ body {
 }
 
 .dev-overlay {
-  color: red;
-  font-size: xxx-large;
+  color: white;
+  background: black;
+  opacity: 40%;
+  font-size: xx-large;
+  text-align: center;
   transform: skewX(-15deg);
   position: fixed;
   top: 40%;
   left: 25%;
-  background: thistle;
-  opacity: 70%;
+  right: 25%;
   padding: 10px;
   border-radius: 10px;
+  pointer-events: none;
 }
 
 .container {
@@ -185,6 +188,8 @@ img, svg {
 
 /* Knappar */
 .btn {
+  color: var(--framtid-off-white);
+  background-color: var(--bs-secondary);
   border-radius: 8px; /* Mjukare hörn än standard */
   padding: 0.8rem 1.8rem;
   font-family: var(--framtid-font-sans-serif), ui-serif;
@@ -245,6 +250,18 @@ img, svg {
 .info-card {
   text-align: center;
   padding: 1.5rem;
+  border: var(--bs-secondary);
+  border-width: thin;
+  border-bottom-width: thick;
+  border-style: solid;
+  border-radius: 10px;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+
+.info-card:hover {
+  top: -5px;
 }
 
 .info-card h3 {
