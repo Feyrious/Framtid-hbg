@@ -33,6 +33,19 @@ public class HomeController : Controller
     [Route("Contact")]
     public IActionResult Contact()
     {
+        var model = new ContactViewModel();
+        return View(model);
+    }
+    
+    [HttpPost]
+    [Route("Contact")]
+    public IActionResult Contact(ContactViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var message = model.Message;
+        }
+
         return View();
     }
     
