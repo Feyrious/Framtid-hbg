@@ -48,7 +48,7 @@
 
   /* Rubriker */
   --bs-heading-font-family: var(--framtid-font-sans-serif);
-  --bs-heading-color: var(--framtid-dark-text);
+  --bs-heading-color: var(--framtid-sage);
   --bs-heading-font-weight: 600;
 }
 
@@ -97,6 +97,7 @@ body {
   padding: 10px;
   border-radius: 10px;
   pointer-events: none;
+  z-index: 99999;
 }
 
 .container {
@@ -249,7 +250,6 @@ img, svg {
 
 .info-card {
   text-align: center;
-  padding: 1.5rem;
   border: var(--bs-secondary);
   border-width: thin;
   border-bottom-width: thick;
@@ -258,6 +258,16 @@ img, svg {
   position: relative;
   top: 0;
   transition: top ease 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 20px, rgba(0, 0, 0, 0.22) 0px 5px 5px;
+  
+  img {
+    border-radius: 10px;
+    height: 250px;
+  }
+  
+  h3, p, .btn {
+    margin: 20px;
+  }
 }
 
 .info-card:hover {
