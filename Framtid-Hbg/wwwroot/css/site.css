@@ -185,6 +185,8 @@ img, svg {
 
 /* Knappar */
 .btn {
+  color: var(--framtid-off-white);
+  background-color: var(--bs-secondary);
   border-radius: 8px; /* Mjukare hörn än standard */
   padding: 0.8rem 1.8rem;
   font-family: var(--framtid-font-sans-serif), ui-serif;
