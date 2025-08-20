@@ -55,6 +55,8 @@
 
 /* 3. Generella stiljusteringar
 -------------------------------------------------- */
+
+
 html {
   font-size: var(--bs-body-font-size);
   line-height: var(--bs-body-line-height);
@@ -256,10 +258,16 @@ img, svg {
 }
 
 .image-banner {
+  color: var(--framtid-off-white);
+  font-family:  var(--framtid-font-sans-serif), sans-serif;
   background-size: cover;
   width: 100%;
   height: 300px;
   margin-bottom: 3rem;
+  
+  h2, p {
+    margin-bottom: 5px;
+  }
   
   img {
     border-radius: 0px 0px 10px 10px;
