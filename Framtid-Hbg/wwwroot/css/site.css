@@ -230,6 +230,10 @@ img, svg {
   color: #FFFFFF; /* Garanterar vit text på terrakotta-knappen */
 }
 
+.btn:disabled {
+  background-color: lightgray; !important;
+}
+
 .form-check-input:checked {
   background-color: var(--framtid-sage);
   border-color: var(--framtid-sage);
