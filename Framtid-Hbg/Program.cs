@@ -1,7 +1,11 @@
+using Framtid_hbg.Website.Service;
+using Framtid_hbg.Website.Service.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<INotifyService, EmailService>();
 
 var app = builder.Build();
 
@@ -24,6 +28,5 @@ app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
