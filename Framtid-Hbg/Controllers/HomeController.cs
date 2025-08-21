@@ -53,9 +53,12 @@ public class HomeController : Controller
         
         var isSuccess = _notifyService.SendMessage(emailMessage);
 
-        return View(isSuccess == false ? 
-            ViewBag["Could not send message"] : 
-            ViewBag["Message sent"]);
+        TempData["result"] = isSuccess.ToString().ToLower();
+        TempData["message"] = isSuccess ? 
+            "Vi har mottagit ditt meddelande, vi återkommer så snart vi kan!" : 
+            "Vi hade problem att skicka meddelandet, vänligen prova på: noreply@test.se";
+
+        return View();
     }
     
     [Route("Privacy")]
