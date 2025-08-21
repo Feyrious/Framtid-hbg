@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -23,32 +23,7 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        <div class="row">
-            <div class="col-6" style="text-align: left">
-                <h4 style="margin-bottom: 2px">Kontakt</h4>
-                <b>Email:</b> <a href="mailto:info@framtid-hbg.se">info@framtid-hbg.se</a><br/>
-                <b>Tel:</b> 042-250 180<br/>
-                <b>Adress:</b> Landskronavägen 14, Helsingborg<br/>
-            </div>
-            <div class="col-6">
-                <div class="row">
-                    <div class="col-sm-8 col-md-6 col-lg-5 offset-md-3 offset-lg-4" style="display:grid; place-items: center; text-align: right"><b>Hitta oss även på:</b></div>
-                    <div class="col-sm-2 col-md-1 col-lg-1"><a href="https://www.instagram.com/loppisframtid/"><img class="social-images" src="img/Instagram_Glyph_Gradient.webp" alt="Instagram"/></a></div>
-                    <div class="col-sm-2 col-md-2 col-lg-2"><a href="https://www.facebook.com/KooperativFramtid"><img class="social-images" src="img/Facebook_Logo_Primary.webp" alt="Instagram"/></a></div>
-                </div>
-                <div class="row">
-                    <div class="col-12" style="text-align: right">
-                        Copyright © @DateTime.Now.Year framtid-hbg.se<br/>
-                        All rights reserved.<br/>
-                        <a asp-area="" asp-controller="Home" asp-action="Privacy">Sekretesspolicy</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+@await Html.PartialAsync("Footer")
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
