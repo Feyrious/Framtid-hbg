@@ -10,25 +10,26 @@
             <h1>Kontakta oss</h1>
             @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
             {
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ContactType" id="other-radio" value="Övrigt" checked>
-                    <label class="form-check-label" for="other-radio">
-                        Jag har en fråga
-                    </label>
+                <div class="row" style="margin: 0">
+                    <div class="col-lg-3 col-md-4 col-sm-12 form-check">
+                        <input class="form-check-input" type="radio" name="ContactType" id="other-radio" value="Övrigt" checked>
+                        <label class="form-check-label" for="other-radio">
+                            Jag har en fråga
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12 form-check">
+                        <input class="form-check-input" type="radio" name="ContactType" id="booking-radio" value="Upphämtning">
+                        <label class="form-check-label" for="booking-radio">
+                            Boka hämtning
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12 form-check">
+                        <input class="form-check-input" type="radio" name="ContactType" id="cleaning-radio" value="Dödsbo">
+                        <label class="form-check-label" for="cleaning-radio">
+                            Dödsboshantering
+                        </label>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ContactType" id="booking-radio" value="Upphämtning">
-                    <label class="form-check-label" for="booking-radio">
-                        Boka en hämtning
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ContactType" id="cleaning-radio" value="Dödsbo">
-                    <label class="form-check-label" for="cleaning-radio">
-                        Dödsboshantering
-                    </label>
-                </div>
-                <br/>
                 <br/>
                 <div class="form-group">
                     <label for="Name">Namn:</label>
