@@ -145,6 +145,32 @@ img, svg {
   object-fit: cover;
 }
 
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  padding: 8px;
+}
+
+.left-column {
+  text-align: left;
+}
+
+.right-column {
+  text-align: right;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(from var(--framtid-sage) r g b / 0.3)
+}
+
+
+
 .social-images {
   width: 20px;
   height: 20px;
