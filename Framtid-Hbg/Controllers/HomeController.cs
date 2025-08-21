@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Framtid_hbg.Website.Models;
+using Framtid_hbg.Website.Service;
+using Framtid_hbg.Website.Service.Interface;
 
 namespace Framtid_hbg.Website.Controllers;
 
@@ -39,14 +41,19 @@ public class HomeController : Controller
     
     [HttpPost]
     [Route("Contact")]
-    public IActionResult Contact(ContactViewModel model)
+    public IActionResult Contact(ContactViewModel model, INotifyService notifyService)
     {
-        if (ModelState.IsValid)
-        {
-            var message = model.Message;
-        }
+        if (!ModelState.IsValid || model.Email == null || model.ContactType == null || model.Message == null)
+            return View();
 
-        return View();
+        var emailMessage = new EmailMessage();
+        emailMessage.PrepareMessage(model);
+        
+        var isSuccess = notifyService.SendMessage(emailMessage);
+
+        return View(isSuccess == false ? 
+            ViewBag["Could not send message"] : 
+            ViewBag["Message sent"]);
     }
     
     [Route("Privacy")]
