@@ -23,11 +23,14 @@ public class EmailMessage : INotifyMessage
         
         if (model.PhoneNumber != null)
             Message += $"Telefon: {model.PhoneNumber}{Environment.NewLine}";
+        
         if (model.Adress != null)
-            Message += $"{Environment.NewLine}Adress:{Environment.NewLine}" +
+            Message += $"{Environment.NewLine}" +
+                       $"Adress:{Environment.NewLine}" +
                        $"{model.Adress}{Environment.NewLine}";
         
-        Message += $"Meddelande:{Environment.NewLine}" +
+        Message += $"{Environment.NewLine}" +
+                   $"Meddelande:{Environment.NewLine}" +
                    $"{model.Message}{Environment.NewLine}";
     }
 }
