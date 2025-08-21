@@ -18,12 +18,16 @@ public class EmailMessage : INotifyMessage
         
         Sender = model.Email;
         Subject = model.ContactType;
-        Message = $"Namn: " + model.Name + Environment.NewLine;
-        Message += $"Email: " + model.Email + Environment.NewLine;
+        Message = $"Namn: {model.Name}{Environment.NewLine}";
+        Message += $"Email: {model.Email}{Environment.NewLine}";
+        
         if (model.PhoneNumber != null)
-            Message += $"Telefon: " + model.PhoneNumber + Environment.NewLine;
+            Message += $"Telefon: {model.PhoneNumber}{Environment.NewLine}";
         if (model.Adress != null)
-            Message += $"Adress: " + model.Adress + Environment.NewLine;
-        Message += $"Meddelande: " + model.Message + Environment.NewLine;
+            Message += $"{Environment.NewLine}Adress:{Environment.NewLine}" +
+                       $"{model.Adress}{Environment.NewLine}";
+        
+        Message += $"Meddelande:{Environment.NewLine}" +
+                   $"{model.Message}{Environment.NewLine}";
     }
 }
