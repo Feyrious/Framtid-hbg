@@ -267,7 +267,7 @@ img, svg {
   font-family:  var(--framtid-font-sans-serif), sans-serif;
   background-size: cover;
   width: 100%;
-  height: 300px;
+  height: 430px;
   margin-bottom: 3rem;
   
   h2, p {
@@ -355,7 +355,7 @@ label {
   background-color: var(--framtid-sage);
   color: var(--framtid-off-white);
   padding: 1rem 0;
-  margin-top: 4rem;
+  margin-top: 2rem;
   left: 0;
   bottom: 0;
   width: 100%;
