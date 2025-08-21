@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Mail;
 using Framtid_hbg.Website.Service.Interface;
 
@@ -18,8 +18,8 @@ public class EmailService : INotifyService
         mailClient.Credentials = new NetworkCredential(username, password);
         using var message =
             new MailMessage(
-                from, 
-                notifyMessage.Recipient, 
+                notifyMessage.Sender, 
+                _to, 
                 notifyMessage.Subject, 
                 notifyMessage.Message);
 
