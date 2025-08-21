@@ -145,6 +145,32 @@ img, svg {
   object-fit: cover;
 }
 
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  padding: 8px;
+}
+
+.left-column {
+  text-align: left;
+}
+
+.right-column {
+  text-align: right;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(from var(--framtid-sage) r g b / 0.3)
+}
+
+
+
 .social-images {
   width: 20px;
   height: 20px;
@@ -267,7 +293,7 @@ img, svg {
   font-family:  var(--framtid-font-sans-serif), sans-serif;
   background-size: cover;
   width: 100%;
-  height: 300px;
+  height: 430px;
   margin-bottom: 3rem;
   
   h2, p {
@@ -355,7 +381,7 @@ label {
   background-color: var(--framtid-sage);
   color: var(--framtid-off-white);
   padding: 1rem 0;
-  margin-top: 4rem;
+  margin-top: 2rem;
   left: 0;
   bottom: 0;
   width: 100%;
