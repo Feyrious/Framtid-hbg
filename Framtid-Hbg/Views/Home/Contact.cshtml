@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Kontakta oss";
+    var isSuccess = TempData["result"] as string;
+    var message = TempData["message"] as string;
 }
 
 <div class="row">
@@ -8,25 +10,26 @@
             <h1>Kontakta oss</h1>
             @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
             {
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ContactType" id="other-radio" value="Övrigt" checked>
-                    <label class="form-check-label" for="other-radio">
-                        Jag har en fråga
-                    </label>
+                <div class="row" style="margin: 0">
+                    <div class="col-lg-3 col-md-4 col-sm-12 form-check">
+                        <input class="form-check-input" type="radio" name="ContactType" id="other-radio" value="Övrigt" checked>
+                        <label class="form-check-label" for="other-radio">
+                            Jag har en fråga
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12 form-check">
+                        <input class="form-check-input" type="radio" name="ContactType" id="booking-radio" value="Upphämtning">
+                        <label class="form-check-label" for="booking-radio">
+                            Boka hämtning
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12 form-check">
+                        <input class="form-check-input" type="radio" name="ContactType" id="cleaning-radio" value="Dödsbo">
+                        <label class="form-check-label" for="cleaning-radio">
+                            Dödsboshantering
+                        </label>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ContactType" id="booking-radio" value="Upphämtning">
-                    <label class="form-check-label" for="booking-radio">
-                        Boka en hämtning
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="ContactType" id="cleaning-radio" value="Dödsbo">
-                    <label class="form-check-label" for="cleaning-radio">
-                        Dödsboshantering
-                    </label>
-                </div>
-                <br/>
                 <br/>
                 <div class="form-group">
                     <label for="Name">Namn:</label>
@@ -53,7 +56,20 @@
                     <textarea class="form-control" id="Message" name="Message" rows="6" placeholder="Skriv ditt meddelande här"></textarea>
                 </div>
                 <br/>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <button type="submit" class="btn btn-primary" disabled="disabled">Submit</button>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-12" style="margin: 20px">
+                        @if (!string.IsNullOrEmpty(isSuccess) && !string.IsNullOrEmpty(message))
+                        {
+                            <div class="alert @(isSuccess == "true" ? "alert-success" : "alert-danger") fade show" role="alert">
+                                <strong>@message</strong>
+                            </div>
+                        }
+                    </div>
+                </div>
+               
             }
         </div>
     </div>
