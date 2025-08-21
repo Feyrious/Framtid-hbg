@@ -42,6 +42,7 @@ public class HomeController : Controller
     }
     
     [HttpPost]
+    [ValidateAntiForgeryToken]
     [Route("Contact")]
     public IActionResult Contact(ContactViewModel model)
     {
@@ -53,10 +54,11 @@ public class HomeController : Controller
         
         var isSuccess = _notifyService.SendMessage(emailMessage);
 
+        var contactEmail = Environment.GetEnvironmentVariable("");
         TempData["result"] = isSuccess.ToString().ToLower();
         TempData["message"] = isSuccess ? 
             "Vi har mottagit ditt meddelande, vi återkommer så snart vi kan!" : 
-            "Vi hade problem att skicka meddelandet, vänligen prova på: noreply@test.se";
+            "Vi hade problem att skicka meddelandet, vänligen prova på: " + contactEmail;
 
         return View();
     }
