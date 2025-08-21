@@ -9,10 +9,12 @@ namespace Framtid_hbg.Website.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly INotifyService _notifyService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger,  INotifyService notifyService)
     {
         _logger = logger;
+        _notifyService = notifyService;
     }
 
     public IActionResult Index()
@@ -41,7 +43,7 @@ public class HomeController : Controller
     
     [HttpPost]
     [Route("Contact")]
-    public IActionResult Contact(ContactViewModel model, INotifyService notifyService)
+    public IActionResult Contact(ContactViewModel model)
     {
         if (!ModelState.IsValid || model.Email == null || model.ContactType == null || model.Message == null)
             return View();
@@ -49,7 +51,7 @@ public class HomeController : Controller
         var emailMessage = new EmailMessage();
         emailMessage.PrepareMessage(model);
         
-        var isSuccess = notifyService.SendMessage(emailMessage);
+        var isSuccess = _notifyService.SendMessage(emailMessage);
 
         return View(isSuccess == false ? 
             ViewBag["Could not send message"] : 
