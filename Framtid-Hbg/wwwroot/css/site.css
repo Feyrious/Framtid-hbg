@@ -213,6 +213,7 @@ img, svg {
 
 /* Knappar */
 .btn, .btn:hover {
+  height: 60px;
   color: var(--framtid-off-white);
   background-color: var(--bs-secondary);
   border-radius: 8px; /* Mjukare hörn än standard */
@@ -227,6 +228,10 @@ img, svg {
 
 .btn-secondary, .btn-secondary:hover {
   color: #FFFFFF; /* Garanterar vit text på terrakotta-knappen */
+}
+
+.btn:disabled {
+  background-color: lightgray; !important;
 }
 
 .form-check-input:checked {

@@ -1,16 +1,20 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Framtid_hbg.Website.Models;
+using Framtid_hbg.Website.Service;
+using Framtid_hbg.Website.Service.Interface;
 
 namespace Framtid_hbg.Website.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly INotifyService _notifyService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger,  INotifyService notifyService)
     {
         _logger = logger;
+        _notifyService = notifyService;
     }
 
     public IActionResult Index()
@@ -41,10 +45,18 @@ public class HomeController : Controller
     [Route("Contact")]
     public IActionResult Contact(ContactViewModel model)
     {
-        if (ModelState.IsValid)
-        {
-            var message = model.Message;
-        }
+        if (model.Email == null || model.ContactType == null || model.Message == null)
+            return View();
+
+        var emailMessage = new EmailMessage();
+        emailMessage.PrepareMessage(model);
+        
+        var isSuccess = _notifyService.SendMessage(emailMessage);
+
+        TempData["result"] = isSuccess.ToString().ToLower();
+        TempData["message"] = isSuccess ? 
+            "Vi har mottagit ditt meddelande, vi återkommer så snart vi kan!" : 
+            "Vi hade problem att skicka meddelandet, vänligen prova på: noreply@test.se";
 
         return View();
     }

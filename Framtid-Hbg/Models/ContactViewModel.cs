@@ -15,7 +15,7 @@ public class ContactViewModel
     public string? Email { get; set; }
     
     [BindProperty]
-    public int PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
     
     [BindProperty]
     public string? Adress { get; set; }
