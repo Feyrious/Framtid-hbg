@@ -45,7 +45,7 @@ public class HomeController : Controller
     [Route("Contact")]
     public IActionResult Contact(ContactViewModel model)
     {
-        if (!ModelState.IsValid || model.Email == null || model.ContactType == null || model.Message == null)
+        if (model.Email == null || model.ContactType == null || model.Message == null)
             return View();
 
         var emailMessage = new EmailMessage();
