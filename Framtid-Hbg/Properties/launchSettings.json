@@ -8,11 +8,11 @@
       "applicationUrl": "http://192.168.1.90:5178",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SMTP_HOST": "",
-        "SMTP_PORT": "",
-        "SMTP_USERNAME": "",
-        "SMTP_PASSWORD": "",
-        "SMTP_CONTACT_RECIPIENT": ""
+        "SMTP_HOST": "smtp.google.com",
+        "SMTP_PORT": "123",
+        "SMTP_USERNAME": "qwerty",
+        "SMTP_PASSWORD": "qwerty",
+        "SMTP_CONTACT_RECIPIENT": "info@framtid-hbg.se"
       }
     },
     "https": {
