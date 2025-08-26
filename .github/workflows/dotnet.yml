@@ -5,7 +5,7 @@ name: .NET
 
 on:
   push:
-    branches: [ "production", "master", "development" ]
+    branches: [ "master", "development" ]
   pull_request:
     branches: [ "master", "development" ]
 
@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./Framtid-hbg/Framtid-hbg/Framtid-hbg.Website.csproj
     - name: Build
       run: dotnet build --no-restore
     - name: Test
