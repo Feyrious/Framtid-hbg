@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Framtid_hbg.Website.Models;
 using Framtid_hbg.Website.Service;
 using Framtid_hbg.Website.Service.Interface;
+using Framtid_hbg.Website.Service.NotifyService;
 
 namespace Framtid_hbg.Website.Controllers;
 
@@ -49,9 +50,9 @@ public class HomeController : Controller
         if (model.Email == null || model.ContactType == null || model.Message == null)
             return View();
 
-        var emailMessage = new EmailMessage();
-        emailMessage.PrepareMessage(model);
-        
+        var notifyMessage = new NotifyMessage().PrepareContentFrom(model);
+
+        var emailMessage = _notifyService.PrepareEmailFrom(notifyMessage);
         var isSuccess = _notifyService.SendMessage(emailMessage);
 
         var contactEmail = Environment.GetEnvironmentVariable("");

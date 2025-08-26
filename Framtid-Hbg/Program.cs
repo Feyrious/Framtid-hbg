@@ -1,5 +1,6 @@
 using Framtid_hbg.Website.Service;
 using Framtid_hbg.Website.Service.Interface;
+using Framtid_hbg.Website.Service.NotifyService;
 
 var builder = WebApplication.CreateBuilder(args);
 
