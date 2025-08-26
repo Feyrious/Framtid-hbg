@@ -66,8 +66,6 @@ public class EmailService : INotifyService
                 notifyMessage.Subject, 
                 notifyMessage.Message);
 
-        message.Sender = message.From ?? new MailAddress(notifyMessage.From);
-
         if (notifyMessage.Attachments.Count <= 0) 
             return message;
         

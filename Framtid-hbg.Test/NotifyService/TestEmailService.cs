@@ -10,14 +10,15 @@ public class TestEmailService
     [SetUp]
     public void Setup()
     {
-        _service = new EmailService();
+        Environment.SetEnvironmentVariable("SMTP_CONTACT_RECIPIENT", "recipient@test.com");
+        _service = new EmailService("test.host", 587, "testuser", "testpass");
     }
 
     [Test]
-    public void TestPeparingEmailMessageFromNotifyMessage()
+    public void TestPreparingEmailMessageFromNotifyMessage()
     {
         var sender = "test@email.com";
-        var recipient = "noreply@email.com";
+        var recipient = Environment.GetEnvironmentVariable("SMTP_CONTACT_RECIPIENT") ?? "";
         var subject = "Testing";
         var message = "Testing sending a message";
         
@@ -27,14 +28,13 @@ public class TestEmailService
             Recipient = recipient,
             Subject = subject,
             Message = message
-        } as INotifyMessage;
+        };
 
         var emailMessage = _service.PrepareEmailFrom(notifyMessage);
         
-        Assert.That(emailMessage.From?.Address, Does.Contain(sender));
-        Assert.That(emailMessage.Sender?.Address, Does.Contain(sender));
-        Assert.That(emailMessage.To[0].Address, Does.Contain(recipient));
-        Assert.That(emailMessage.Subject, Does.Contain(subject));
-        Assert.That(emailMessage.Body, Does.Contain(message));
+        Assert.That(emailMessage.From?.Address, Is.EqualTo(sender));
+        Assert.That(emailMessage.To[0].Address, Is.EqualTo(recipient));
+        Assert.That(emailMessage.Subject, Is.EqualTo(subject));
+        Assert.That(emailMessage.Body, Is.EqualTo(message));
     }
 }
