@@ -288,12 +288,11 @@ label {
 }
 
 .card-jumping {
-  top: 0;
-  transition: top ease 0.5s;
+  transition: transform ease 0.5s;
 }
 
 .card-jumping:hover {
-  top: -5px;
+  transform: translateY(-5px);
 }
 
 .info-card {
