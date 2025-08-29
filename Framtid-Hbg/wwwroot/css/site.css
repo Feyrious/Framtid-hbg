@@ -137,7 +137,7 @@ th, td {
 }
 
 tr:nth-child(even) {
-  background-color: rgb(from var(--framtid-sage) r g b / 0.3)
+  background-color: rgb(from var(--framtid-sage) r g b / 0.3);
 }
 
 /* Fokus-stilar (Tillgänglighet) */
@@ -161,7 +161,7 @@ tr:nth-child(even) {
 }
 
 .navbar-toggler {
-  background-color: var(--framtid-off-white);
+  background-color: rgb(from var(--framtid-sage) r g b / 0.4);
 }
 
 .navbar-brand {
