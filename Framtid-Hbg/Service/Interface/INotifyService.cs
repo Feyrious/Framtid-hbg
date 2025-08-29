@@ -1,6 +1,10 @@
-﻿namespace Framtid_hbg.Website.Service.Interface;
+﻿using System.Net.Mail;
+
+namespace Framtid_hbg.Website.Service.Interface;
 
 public interface INotifyService
 {
-    public bool SendMessage(INotifyMessage notifyMessage);
+    public bool SendMessage(MailMessage mailMessage);
+
+    public MailMessage PrepareEmailFrom(INotifyMessage notifyMessage);
 }
