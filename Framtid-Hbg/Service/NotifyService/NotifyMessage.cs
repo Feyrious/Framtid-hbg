@@ -1,22 +1,23 @@
 ﻿using Framtid_hbg.Website.Models;
 using Framtid_hbg.Website.Service.Interface;
 
-namespace Framtid_hbg.Website.Service;
+namespace Framtid_hbg.Website.Service.NotifyService;
 
-public class EmailMessage : INotifyMessage
+public class NotifyMessage : INotifyMessage
 {
-    public string Sender { get; set; } = string.Empty;
+    public string From { get; set; } = string.Empty;
+    public string Recipient { get; set; } = string.Empty;
     public string Subject { get; set; } = string.Empty;
     public string Message { get; set; } = string.Empty;
     public List<MemoryStream> Attachments { get; set; } = [];
 
-    public void PrepareMessage(ContactViewModel model)
+    public INotifyMessage PrepareContentFrom(ContactViewModel model)
     {
-        
         if (model.Email == null || model.ContactType == null || model.Message == null)
             throw new ArgumentException("");
         
-        Sender = model.Email;
+        From = model.Email;
+        Recipient = Environment.GetEnvironmentVariable("SMTP_CONTACT_RECIPIENT") ?? string.Empty;
         Subject = model.ContactType;
         Message = $"Namn: {model.Name}{Environment.NewLine}";
         Message += $"Email: {model.Email}{Environment.NewLine}";
@@ -26,11 +27,13 @@ public class EmailMessage : INotifyMessage
         
         if (model.Adress != null)
             Message += $"{Environment.NewLine}" +
-                       $"Adress:{Environment.NewLine}" +
-                       $"{model.Adress}{Environment.NewLine}";
+                               $"Adress:{Environment.NewLine}" +
+                               $"{model.Adress}{Environment.NewLine}";
         
         Message += $"{Environment.NewLine}" +
-                   $"Meddelande:{Environment.NewLine}" +
-                   $"{model.Message}{Environment.NewLine}";
+                           $"Meddelande:{Environment.NewLine}" +
+                           $"{model.Message}{Environment.NewLine}";
+
+        return this;
     }
 }
