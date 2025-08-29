@@ -11,28 +11,41 @@ public class NotifyMessage : INotifyMessage
     public string Message { get; set; } = string.Empty;
     public List<MemoryStream> Attachments { get; set; } = [];
 
-    public INotifyMessage PrepareContentFrom(ContactViewModel model)
+    /// <summary>
+    /// Creates a INotifyMessage object from a ContactViewModel object for use with a message service.
+    /// </summary>
+    /// <param name="contactViewModel"></param>
+    /// <returns>An INotifyMessage object</returns>
+    /// <exception cref="ArgumentException">Throws an exception if Email, ContactType or Message is null</exception>
+    public INotifyMessage PrepareContentFrom(ContactViewModel contactViewModel)
     {
-        if (model.Email == null || model.ContactType == null || model.Message == null)
+        // Check model so it contains data
+        if (contactViewModel.Email == null || 
+            contactViewModel.ContactType == null || 
+            contactViewModel.Message == null)
             throw new ArgumentException("");
         
-        From = model.Email;
+        // Set its variables from the model
+        From = contactViewModel.Email;
         Recipient = Environment.GetEnvironmentVariable("SMTP_CONTACT_RECIPIENT") ?? string.Empty;
-        Subject = model.ContactType;
-        Message = $"Namn: {model.Name}{Environment.NewLine}";
-        Message += $"Email: {model.Email}{Environment.NewLine}";
+        Subject = contactViewModel.ContactType;
         
-        if (model.PhoneNumber != null)
-            Message += $"Telefon: {model.PhoneNumber}{Environment.NewLine}";
+        // Setting the message body with the contact information
+        Message = $"Namn: {contactViewModel.Name}{Environment.NewLine}";
+        Message += $"Email: {contactViewModel.Email}{Environment.NewLine}";
         
-        if (model.Adress != null)
+        // Add phone-number and address if they exist
+        if (contactViewModel.PhoneNumber != null)
+            Message += $"Telefon: {contactViewModel.PhoneNumber}{Environment.NewLine}";
+        
+        if (contactViewModel.Adress != null)
             Message += $"{Environment.NewLine}" +
                                $"Adress:{Environment.NewLine}" +
-                               $"{model.Adress}{Environment.NewLine}";
+                               $"{contactViewModel.Adress}{Environment.NewLine}";
         
         Message += $"{Environment.NewLine}" +
                            $"Meddelande:{Environment.NewLine}" +
-                           $"{model.Message}{Environment.NewLine}";
+                           $"{contactViewModel.Message}{Environment.NewLine}";
 
         return this;
     }
