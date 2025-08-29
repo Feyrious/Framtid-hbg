@@ -1,4 +1,5 @@
-﻿using Framtid_hbg.Website.Models;
+﻿using System.Text;
+using Framtid_hbg.Website.Models;
 using Framtid_hbg.Website.Service.Interface;
 
 namespace Framtid_hbg.Website.Service.NotifyService;
@@ -23,7 +24,7 @@ public class NotifyMessage : INotifyMessage
         if (contactViewModel.Email == null || 
             contactViewModel.ContactType == null || 
             contactViewModel.Message == null)
-            throw new ArgumentException("");
+            throw new ArgumentException("Data was not provided in the ContactViewModel");
         
         // Set its variables from the model
         From = contactViewModel.Email;
@@ -31,21 +32,25 @@ public class NotifyMessage : INotifyMessage
         Subject = contactViewModel.ContactType;
         
         // Setting the message body with the contact information
-        Message = $"Namn: {contactViewModel.Name}{Environment.NewLine}";
-        Message += $"Email: {contactViewModel.Email}{Environment.NewLine}";
+        var builder = new StringBuilder();
+        builder.Append($"Namn: {contactViewModel.Name}{Environment.NewLine}");
+        
+        builder.Append($"Email: {contactViewModel.Email}{Environment.NewLine}");
         
         // Add phone-number and address if they exist
         if (contactViewModel.PhoneNumber != null)
-            Message += $"Telefon: {contactViewModel.PhoneNumber}{Environment.NewLine}";
+            builder.Append($"Telefon: {contactViewModel.PhoneNumber}{Environment.NewLine}");
         
         if (contactViewModel.Adress != null)
-            Message += $"{Environment.NewLine}" +
-                               $"Adress:{Environment.NewLine}" +
-                               $"{contactViewModel.Adress}{Environment.NewLine}";
+            builder.Append($"{Environment.NewLine}" +
+                           $"Adress:{Environment.NewLine}" +
+                           $"{contactViewModel.Adress}{Environment.NewLine}");
         
-        Message += $"{Environment.NewLine}" +
-                           $"Meddelande:{Environment.NewLine}" +
-                           $"{contactViewModel.Message}{Environment.NewLine}";
+        builder.Append($"{Environment.NewLine}" +
+                       $"Meddelande:{Environment.NewLine}" +
+                       $"{contactViewModel.Message}{Environment.NewLine}");
+
+        Message = builder.ToString();
 
         return this;
     }

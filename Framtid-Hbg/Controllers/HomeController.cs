@@ -59,7 +59,7 @@ public class HomeController : Controller
         var isSuccess = _notifyService.SendMessage(emailMessage);
 
         // Returns the result of sending the message to the user
-        var contactEmail = Environment.GetEnvironmentVariable("");
+        var contactEmail = Environment.GetEnvironmentVariable("SMTP_CONTACT_RECIPIENT");
         TempData["result"] = isSuccess.ToString().ToLower();
         TempData["message"] = isSuccess ? 
             "Vi har mottagit ditt meddelande, vi återkommer så snart vi kan!" : 

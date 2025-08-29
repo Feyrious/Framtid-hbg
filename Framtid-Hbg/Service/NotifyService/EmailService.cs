@@ -58,7 +58,7 @@ public class EmailService : INotifyService
         }
         catch (SmtpException ex)
         {
-            Console.WriteLine("Message was not sent: " + mailMessage + ex);
+            Console.WriteLine("Message was not sent: " + ex);
             return false;
         }
         finally
