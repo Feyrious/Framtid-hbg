@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Mail;
 using Framtid_hbg.Website.Service.Interface;
 
@@ -12,7 +12,7 @@ public class EmailService : INotifyService
     private readonly string _password;
     
     /// <summary>
-    /// Set SMTP variables from Environmental variables.
+    /// Set SMTP variables from Environmental variables on creation.
     /// </summary>
     public EmailService()
     {
@@ -23,7 +23,7 @@ public class EmailService : INotifyService
     }
 
     /// <summary>
-    /// Set SMTP variables from custom variables.
+    /// Set custom variables for the SMTP service on creation.
     /// </summary>
     /// <param name="host">Set the SMTP Host</param>
     /// <param name="port">Set the SMTP Port</param>
@@ -37,13 +37,21 @@ public class EmailService : INotifyService
         _password = password;
     }
     
+    /// <summary>
+    /// Uses a MailMessage object to send an email with SMTP.
+    /// Environmental Variables need to be set for SMTP before use.
+    /// </summary>
+    /// <param name="mailMessage"></param>
+    /// <returns>Boolean if the message was sent or encountered an error</returns>
     public bool SendMessage(MailMessage mailMessage)
     {
+        // Creating an SMTP client and setting its properties
         using var mailClient = new SmtpClient(_host, _port);
         mailClient.EnableSsl = true;
         mailClient.DeliveryMethod = SmtpDeliveryMethod.Network;
         mailClient.Credentials = new NetworkCredential(_username, _password);
-        
+
+        // Trying to send the message, throwing exception if it fails
         try
         {
             mailClient.Send(mailMessage);
@@ -53,12 +61,22 @@ public class EmailService : INotifyService
             Console.WriteLine("Message was not sent: " + ex);
             return false;
         }
+        finally
+        {
+            mailMessage.Dispose();
+        }
 
         return true;
     }
 
+    /// <summary>
+    /// Converts a INotifyMessage to a MailMessage for use with the SMTP EmailService.
+    /// </summary>
+    /// <param name="notifyMessage">Pass an INotifyMessage object</param>
+    /// <returns>An MailMessage object</returns>
     public MailMessage PrepareEmailFrom(INotifyMessage notifyMessage)
     {
+        // Set a new MailMessage object with the values from the INotifyMessage object
         var message =
             new MailMessage(
                 notifyMessage.From, 
@@ -66,9 +84,15 @@ public class EmailService : INotifyService
                 notifyMessage.Subject, 
                 notifyMessage.Message);
 
-        if (notifyMessage.Attachments.Count <= 0) 
-            return message;
+        return message;
         
+        /*
+        // Returns the message if there are no attachments
+        if (notifyMessage.Attachments.Count <= 0)
+           return message;
+
+        // Loop the number of attachments and add them to the message
+        // OBS - This is not in use yet and has not been tested
         for (var index = 0; index < notifyMessage.Attachments.Count; index++)
         {
             var notifyMessageAttachment = notifyMessage.Attachments[index];
@@ -80,5 +104,6 @@ public class EmailService : INotifyService
         }
 
         return message;
+        */
     }
 }
