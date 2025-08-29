@@ -84,10 +84,13 @@ public class EmailService : INotifyService
                 notifyMessage.Subject, 
                 notifyMessage.Message);
 
-        // Returns the message if there are no attachments
-        if (notifyMessage.Attachments.Count <= 0) 
-            return message;
+        return message;
         
+        /*
+        // Returns the message if there are no attachments
+        if (notifyMessage.Attachments.Count <= 0)
+           return message;
+
         // Loop the number of attachments and add them to the message
         // OBS - This is not in use yet and has not been tested
         for (var index = 0; index < notifyMessage.Attachments.Count; index++)
@@ -101,5 +104,6 @@ public class EmailService : INotifyService
         }
 
         return message;
+        */
     }
 }
