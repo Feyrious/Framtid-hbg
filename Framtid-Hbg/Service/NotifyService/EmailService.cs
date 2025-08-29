@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Mail;
 using Framtid_hbg.Website.Service.Interface;
 
@@ -37,6 +37,11 @@ public class EmailService : INotifyService
         _password = password;
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="notifyMessage"></param>
+    /// <returns>Boolean if the message was sent or encountered a error</returns>
     public bool SendMessage(MailMessage mailMessage)
     {
         using var mailClient = new SmtpClient(_host, _port);
