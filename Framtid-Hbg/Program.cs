@@ -1,19 +1,21 @@
 using Framtid_hbg.Website.Service.Interface;
 using Framtid_hbg.Website.Service.NotifyService;
 
+namespace Framtid_hbg.Website;
+
 public class Program
 {
     static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+        // Add services to the container.
 
         ConfigureServices(builder.Services);
 
         var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+        // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Home/Error");
@@ -34,13 +36,11 @@ public class Program
             .WithStaticAssets();
 
         app.Run();
-
-        return;
-
-        void ConfigureServices(IServiceCollection services)
-        {
-            services.AddSingleton<INotifyService, EmailService>();
-            services.AddControllersWithViews();
-        }
+    }
+    
+    static void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton<INotifyService, EmailService>();
+        services.AddControllersWithViews();
     }
 }
